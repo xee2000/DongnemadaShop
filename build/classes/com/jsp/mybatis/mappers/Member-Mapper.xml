@@ -1,0 +1,135 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member-Mapper">
+
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and member_id like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and member_phone like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'e'.toString()">
+			and member_email like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'n'.toString()">
+			and member_name like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+
+	<select id="selectProductList" resultType="product">
+		select
+		*
+		from member_productlist
+		where product_code is not null
+		<include refid="search" />
+	</select>
+
+	<select id="selectSearchProductListCount" resultType="int">
+		select
+		count(*)
+		from member_productlist
+		where product_code is not null
+		<include refid="search" />
+	</select>
+
+	<select id="selectSearchProductListMart" resultType="product">
+		SELECT
+		p.PRODUCT_CODE, p.CATEGORY_CODE, p.SHOP_ID, p.PRODUCT_NAME,
+		p.PRODUCT_MAKER, p.PRODUCT_PRICE, p.PRODUCT_ORIGIN, p.PRODUCT_KEEP,
+		p.PRODUCT_MIN, p.PRODUCT_MAX, p.PRODUCT_STATUS, p.PRODUCT_DETAIL,
+		p.PRODUCT_DISCOUNT, p.PRODUCT_PICTURE
+		FROM product p
+		JOIN shop s
+		ON
+		p.SHOP_ID = s.SHOP_ID
+		WHERE s.shop_brand='이마트' or s.shop_brand='롯데마트'
+		or s.shop_brand='홈플러스'
+	</select>
+
+	<select id="selectSearchProductListStore" resultType="product">
+		SELECT
+		p.PRODUCT_CODE, p.CATEGORY_CODE, p.SHOP_ID, p.PRODUCT_NAME,
+		p.PRODUCT_MAKER, p.PRODUCT_PRICE, p.PRODUCT_ORIGIN, p.PRODUCT_KEEP,
+		p.PRODUCT_MIN, p.PRODUCT_MAX, p.PRODUCT_STATUS, p.PRODUCT_DETAIL,
+		p.PRODUCT_DISCOUNT, p.PRODUCT_PICTURE
+		FROM product p
+		JOIN shop s
+		ON
+		p.SHOP_ID = s.SHOP_ID
+		WHERE s.shop_brand='GS25' or s.shop_brand='CU' or
+		s.shop_brand='7-eleven'
+	</select>
+
+	<select id="selectSearchMemberList" resultType="member">
+		select
+		*
+		from member
+		where member_id is not null
+		<include refid="search" />
+	</select>
+
+	<select id="selectSearchMemberListCount" resultType="int">
+		select
+		count(*)
+		from member
+		where member_id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+
+	<update id="insertMember" parameterType="member">
+		insert into
+		member(member_id, member_pw, member_email, member_phone, member_name)
+		values(#{member_id},#{member_pw},#{member_email},#{member_phone},#{member_name})
+	</update>
+
+	<select id="selectMemberById" parameterType="str"
+		resultType="member">
+		select
+		*
+		from member
+		where member_id=#{member_id}
+	</select>
+
+	<update id="updateMember" parameterType="member">
+		update member
+		set
+		member_pw=#{member_pw},member_email=#{member_email},member_phone=#{member_phone},member_name=#{member_name}
+
+		where member_id=#{member_id}
+	</update>
+
+	<update id="deleteMember" parameterType="str">
+		delete
+		from member
+		where member_id=#{member_id}
+	</update>
+	
+	<select id="selectCartnumber"  resultType="str">
+      select 'Cn'||to_char(to_number(max(substr(cart_number,4))+1),'fm0000') from cart
+	</select>
+	
+	<update id="insertcart" parameterType="cart">
+	 insert
+	 into cart(member_id, cart_number, cart_qty, product_code)
+	 values(#{member_id},#{cart_number},#{cart_qty},#{product_code})
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

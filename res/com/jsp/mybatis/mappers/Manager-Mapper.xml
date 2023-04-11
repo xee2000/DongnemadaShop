@@ -1,0 +1,71 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Manager-Mapper">
+
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and manager_id like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+
+	<select id="selectSearchManagerList" resultType="manager">
+		select
+		*
+		from manager
+		where manager_id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+	
+	<select id="selectSearchManagerListCount" resultType="int">
+		select
+		count(*)
+		from manager
+		where manager_id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+
+	<update id="insertManager" parameterType="manager">
+		insert into
+		manager(manager_id, manager_pw)
+		values(#{manager_id},#{manager_pw})
+	</update>
+
+	<select id="selectManagerById" parameterType="str"
+		resultType="manager">
+		select
+		*
+		from manager
+		where manager_id=#{manager_id}
+	</select>
+	<update id="updateManager" parameterType="manager">
+		update manager
+		set
+		manager_pw=#{manager_pw}
+
+		where manager_id=#{manager_id}
+	</update>
+	<update id="deleteManager" parameterType="str">
+		delete
+		from manager
+		where
+		manager_id=#{manager_id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

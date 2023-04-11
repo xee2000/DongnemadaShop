@@ -1,0 +1,19 @@
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.col-lg-12{
+	margin: 0 auto;
+}
+.shop-openbox{
+width: 800px; 
+height:1300px; 
+margin-left: 25%; 
+margin-top: 40px;	
+}
+.description-header{
+text-align: center; 
+}
+col-sm-3 col-6{
+	text-align: center; 
+	font-famaily: '' Noto Sans KR';
+}

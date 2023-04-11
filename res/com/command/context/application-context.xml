@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+	<!-- dataSource -->
+	<bean id="sqlSessionFactory"
+		class="com.command.datasource.OracleMybatisSqlSessionFactory" />
+
+	<!-- Repository Layer -->
+	<!-- <bean id="memberDAO" class="com.command.dao.MemberDAOImpl"> <property 
+		name="sqlSessionFactory" ref-value="sqlSessionFactory" /> </bean> <bean id="noticeDAO" 
+		class="com.command.dao.NoticeDAOImpl"> <property name="sqlSessionFactory" 
+		ref-value="sqlSessionFactory" /> </bean> <bean id="boardDAO" class="com.command.dao.BoardDAOImpl"> 
+		<property name="sqlSessionFactory" ref-value="sqlSessionFactory" /> </bean> 
+		<bean id="menuDAO" class="com.command.dao.MenuDAOImpl"> <property name="sqlSessionFactory" 
+		ref-value="sqlSessionFactory" /> </bean> -->
+	<bean id="qnaDAO" class="com.command.dao.QnaDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="noticeDAO" class="com.command.dao.NoticeDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="managerDAO" class="com.command.dao.ManagerDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="inquiryDAO" class="com.command.dao.InquiryDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="shopDAO" class="com.command.dao.ShopDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="productDAO" class="com.command.dao.ProductDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="product_CategoryDAO"
+		class="com.command.dao.Product_CategoryDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="memberDAO" class="com.command.dao.MemberDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="deliverDAO" class="com.command.dao.DeliverDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="memberproductDAO"
+		class="com.command.dao.MemberproductDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<!-- Service Layer -->
+	<!-- <bean id="boardService" class="com.command.service.BoardServiceImpl"> 
+		<property name="boardDAO" ref-value="boardDAO" /> </bean> <bean id="noticeService" 
+		class="com.command.service.NoticeServiceImpl"> <property name="noticeDAO" 
+		ref-value="noticeDAO" /> </bean> <bean id="memberService" class="com.command.service.MemberServiceImpl"> 
+		<property name="memberDAO" ref-value="memberDAO" /> </bean> <bean id="menuService" 
+		class="com.command.service.MenuServiceImpl"> <property name="menuDAO" ref-value="menuDAO" 
+		/> </bean> -->
+	<bean id="qnaService" class="com.command.service.QnaServiceImpl">
+		<property name="qnaDAO" ref-value="qnaDAO" />
+	</bean>
+	<bean id="noticeService"
+		class="com.command.service.NoticeServiceImpl">
+		<property name="noticeDAO" ref-value="noticeDAO" />
+	</bean>
+	<bean id="managerService"
+		class="com.command.service.ManagerServiceImpl">
+		<property name="managerDAO" ref-value="managerDAO" />
+	</bean>
+	<bean id="inquiryService"
+		class="com.command.service.InquiryServiceImpl">
+		<property name="inquiryDAO" ref-value="inquiryDAO" />
+	</bean>
+	<bean id="shopService" class="com.command.service.ShopServiceImpl">
+		<property name="shopDAO" ref-value="shopDAO" />
+	</bean>
+	<bean id="productService"
+		class="com.command.service.ProductServiceImpl">
+		<property name="productDAO" ref-value="productDAO" />
+	</bean>
+	<bean id="product_CategoryService"
+		class="com.command.service.Product_CategoryServiceImpl">
+		<property name="product_CategoryDAO"
+			ref-value="product_CategoryDAO" />
+	</bean>
+
+	<bean id="memberService"
+		class="com.command.service.MemberServiceImpl">
+		<property name="memberDAO" ref-value="memberDAO" />
+	</bean>
+	<bean id="memberproductService"
+		class="com.command.service.MemberproductServiceImpl">
+		<property name="memberproductDAO"
+			ref-value="memberproductDAO" />
+	</bean>
+	<bean id="deliverService"
+		class="com.command.service.DeliverServiceImpl">
+		<property name="deliverDAO" ref-value="deliverDAO" />
+	</bean>
+
+</beans>

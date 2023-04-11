@@ -1,0 +1,16 @@
+.shop-openbox{
+	width: 800px; 
+	height: 400px; 
+	margin-left: 25%; 
+	margin-top: 40px;
+	
+}
+.description-block{
+		text-align:center;
+}
+.col-sm-3 col-6{
+	text-align:center;
+}
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}

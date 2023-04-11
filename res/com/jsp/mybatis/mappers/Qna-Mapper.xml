@@ -1,0 +1,87 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Qna-Mapper">
+
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and title like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and content like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			content like
+			'%'||#{keyword}||'%'
+			)
+		</if>
+	</sql>
+	<select id="selectSearchQnaList" resultType="qna">
+		<!-- 가장 처음 가져온 BoardResult의 rownum을 유지하기위해 -->
+		<!-- DB상에서 잘라서 가져오는 방법!!!!!! -->
+		select *
+		from (
+		select rownum as rnum, SearchQnaResult.*
+		from (
+		select *
+		from qna
+		where qna_code is not null
+		<include refid="search" />
+		) SearchQnaResult <!-- naming -->
+      <![CDATA[
+             where rownum <= #{endRow}
+         )
+          where rnum > #{startRow}   
+      ]]>
+
+	</select>
+
+	<select id="selectSearchQnaListCount" resultType="int">
+		select
+		count(*)
+		from qna
+		where qna_code is not null
+		<include refid="search" />
+
+	</select>
+
+	<select id="selectQnaByQnaCode" parameterType="str"
+		resultType="qna">
+		select
+		*
+		from qna
+		where qna_code=#{qna_code}
+	</select>
+
+	<update id="insertQna" parameterType="qna">
+		insert into
+		notice(qna_code,qna_title,qna_content)
+		values(qa_seq('qna'),#{qna_title},#{qna_content}) <!-- get method로 -->
+	</update>
+
+
+	<update id="updateQna" parameterType="qna">
+		update qna
+		set
+		title=#{title},content=#{content}
+		where qna_code=#{qna_code}
+	</update>
+
+	<update id="deleteQna" parameterType="str">
+		delete
+		from qna
+		where
+		qna_code=#{qna_code}
+	</update>
+
+</mapper>
+
+<!-- 컬럼명/변수명 다르면 resultmap으로 맞춰줘~ -->
+
+
+
+

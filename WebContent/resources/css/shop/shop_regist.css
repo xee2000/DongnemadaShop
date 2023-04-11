@@ -1,0 +1,47 @@
+.check_box{
+padding-left:7px;
+padding-right:7px;
+
+}
+.allChk{
+padding-left:7px;
+padding-right:7px;	
+}
+thead>td, thead>th{
+padding-left:7px;
+padding-right:7px;
+
+}
+.menu-bar{
+display:flex;
+flex-direction:row;
+justify-content: flex-end;
+}
+.mCtrl{
+display:flex;
+flex-direction:row;
+justify-content: flex-end;
+}
+.mState{
+	display:flex;
+flex-direction:row;
+justify-content:flex-end;
+}
+.eRegProduct{
+	margin-left:5px;
+}
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-eq3i{background-color:#efefef;font-size:12px;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+.header__menu{
+	text-align:center;
+	
+}
+</style>
+

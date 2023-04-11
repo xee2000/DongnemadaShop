@@ -1,0 +1,74 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Deliver-Mapper">
+   
+   <!-- <sql id="search">   
+      <if test="searchType == 'i'.toString()">
+         and id like '%'||#{keyword}||'%'         
+      </if>
+      <if test="searchType == 'p'.toString()">
+         and phone like '%'||#{keyword}||'%'         
+      </if>
+      <if test="searchType == ’s’.toString()">
+         and email like '%'||#{keyword}||'%'         
+      </if>
+      <if test="searchType == 'n'.toString()">
+         and name like '%'||#{keyword}||'%'         
+      </if> 
+	<if test="searchType == ‘on’.toString()">
+         and name like '%'||#{keyword}||'%'         
+      </if>  
+	<if test="searchType == ‘r’.toString()">
+         and name like '%'||#{keyword}||'%'         
+      </if>      
+   </sql> -->   
+   
+   <!-- <select id="searchDeliverChargeList" resultType="ship_info">
+      select
+      * 
+      from ship_info
+      where invoice is not null
+      <include refid="search" />
+      order by ship_date desc
+   </select> -->
+   
+   <!-- <select id="searchDeliverChargeListCount" resultType="int">
+      select
+      count(*) 
+      from ship_info
+      where invoice is not null
+      <include refid="search" />
+      order by ship_date desc
+   </select> -->
+   
+   <update id="insertDeliver" parameterType="deliver">
+      insert into 
+      deliver(deliver_code, deliver_pw, deliver_name, deliver_section, deliver_type, deliver_phone, deliver_picture)
+      values(#{deliver_code}, #{deliver_pw}, #{deliver_name}, #{deliver_section}, #{deliver_type}, #{deliver_phone}, #{deliver_picture})
+   </update>
+   
+   <select id="deliverByCode" parameterType="str" resultType="deliver">
+      select
+      *
+      from deliver
+      where deliver_code=#{deliver_code}
+   </select>
+
+   <update id="updateDeliver" parameterType="deliver">
+      update deliver
+      set 
+      deliver_pw=#{deliver_pw}, deliver_name=#{deliver_name}, deliver_phone=#{deliver_phone}, deliver_picture=#{deliver_picture}
+      
+      
+	  where deliver_code=#{deliver_code}
+   </update>
+
+
+   <update id="deleteDeliver" parameterType="str">
+      delete 
+      from deliver
+      where deliver_code=#{deliver_code}      
+   </update>
+</mapper>
